@@ -92,7 +92,8 @@ function generateTags(){
     /* split tags into array */
     const articleTagsArray =articleTags.split(' ');
     console.log(articleTagsArray);
-    }/* START LOOP: for each tag */
+    
+   /* START LOOP: for each tag */
     for (let tag of articleTagsArray){
       console.log('tag' , tag);
        /* generate HTML of the link */
@@ -100,10 +101,18 @@ function generateTags(){
       /* add generated code to html variable */
       html= html+ tagLinkHTML;
     /* END LOOP: for each tag */
-    }
+   
+    } 
     /* insert HTML of all the links into the tags wrapper */
+    TagsWrapper.innerHTML = html;
+    const Tags = document.querySelectorAll('.list list-horizontal');
+    console.log(Tags);
+  
+  } 
 
+  
+  
   /* END LOOP: for every article: */
-}
+  }
 
 generateTags();
