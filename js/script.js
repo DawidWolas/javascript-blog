@@ -87,11 +87,11 @@ function generateTags(){
     /* make html variable with empty string */
     let html =''
     /* get tags from data-tags attribute */
-    const articleTags = article.getAttribute('.data-tags');
-    console.log('tags',articleTags);
+    const articleTags = article.getAttribute('data-tags');
+    console.log(articleTags);
     /* split tags into array */
     const articleTagsArray =articleTags.split(' ');
-    console.log('articleTagsArray',articleTagsArray);
+    console.log(articleTagsArray);
     }/* START LOOP: for each tag */
     for (let tag of articleTagsArray){
       console.log('tag' , tag);
