@@ -134,12 +134,12 @@ function generateTags(){
  /* [NEW] find list of tags in right column */
  const tagList = document.querySelector(optTagsListSelector);
 /* [NEW] create variable for all links HTML code */
-let allTagsHTML ={};
+let allTagsHTML = '';
 
 /*[NEW] START LOOP: for each tag in allTags: */
 for (let tag in allTags){
   /*[NEW] generate code of link and add it to allTagHTML*/
-  allTagsHTML += '<li><a href="#tag-' + tag + '"><span>' + allTags[tag] + '</span></a></li> '
+  allTagsHTML += '<li><a href="#tag-' + tag + '"><span>' + tag + +(allTags[tag]) + '</span></a></li> '
 }
 /*[NEW] add html from allTagsHTML to taglist*/
 tagList.innerHTML = allTagsHTML;
