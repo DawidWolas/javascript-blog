@@ -39,7 +39,8 @@ const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles',
   optArticleTagSelector ='.post-tags .list',
-  optArticleAuthorSelector='.post-author';
+  optArticleAuthorSelector='.post-author',
+  optTagsListSelector='.tags.list';
 
 function generateTitleLinks( customSelector ='') {
   /* remove contents of titleList */
@@ -78,6 +79,10 @@ function generateTitleLinks( customSelector ='') {
 generateTitleLinks();
 
 function generateTags(){
+
+  /* [NEW] create a new variable allTags with an empty object */
+  let allTags = {};
+
   /* find all articles */
   const articles = document.querySelectorAll(optArticleSelector);
   /* START LOOP: for every article: */
@@ -102,9 +107,19 @@ function generateTags(){
        const tagLinkHTML = '<li><a href="#tag-' + tag + '"><span>' + tag + '</span></a></li> ';
       /* add generated code to html variable */
       html= html+ tagLinkHTML;
-    /* END LOOP: for each tag */
+
+      
+      /* [NEW] check if this link is NOT already in allTags */
+      if(!allTags.hasOwnProperty(tag)) {
+        /* [NEW] add generated code to allTags array */
+        allTags[tag] = 1;
    
-    } 
+      } else {
+        allTags[tag]++;
+      }
+      /* END LOOP: for each tag */
+     } 
+    }
     /* insert HTML of all the links into the tags wrapper */
     TagsWrapper.innerHTML = html;
     const Tags = document.querySelectorAll('.list list-horizontal');
@@ -116,7 +131,12 @@ function generateTags(){
   
   /* END LOOP: for every article: */
  } 
-  }
+ /* [NEW] find list of tags in right column */
+ const tagList = document.querySelector(optTagsListSelector);
+
+ /* [NEW] add html from allTags to tagList */
+  // tagList.innerHTML = allTags.join(' ');
+  console.log(allTags);
 
 generateTags();
 function tagClickHandler(event){
@@ -188,6 +208,7 @@ function generateAuthors() {
        /* generate HTML of the link */
        const authorLinkHTML = '<li><a href="#author-' + authorTag + '"><span>' + authorTag + '</span></a></li> ';
       /* add generated code to html variable */
+      authorList.innerHTML=authorLinkHTML;
     /* END LOOP: for each tag */
    
    
@@ -249,5 +270,8 @@ function addClickListenersToAuthor(){
 
 addClickListenersToAuthor();
 
-  
-
+function titleListReset() {
+  const resetButton = document.querySelector('button.reset-button');
+  resetButton.addEventListener('click' ,()=>generateTitleLinks());
+}
+titleListReset();
