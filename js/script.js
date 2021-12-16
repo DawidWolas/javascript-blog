@@ -40,7 +40,9 @@ const optArticleSelector = '.post',
   optTitleListSelector = '.titles',
   optArticleTagSelector ='.post-tags .list',
   optArticleAuthorSelector='.post-author',
-  optTagsListSelector='.tags.list';
+  optTagsListSelector='.tags.list',
+  optCloudClassCount = 5,
+  optCloudClassPrefix = 'tag-size-';
 
 function generateTitleLinks( customSelector ='') {
   /* remove contents of titleList */
@@ -77,7 +79,25 @@ function generateTitleLinks( customSelector ='') {
   }
 }
 generateTitleLinks();
+function calculateTagsParams(tags) {
+  /*CREATE new variable with object max value , min value */ 
+  const params = { max : 0 , min : 999999};
+  /*START LOOP: for each tag in tags*/
+  for (let tag in tags){
+    console.log(tag + ' is used ' + tags[tag] + ' times ');
+    if(tags[tag] > params.max){
+      params.max = tags[tag];
+    }else if(tags[tag] < params.min){
+      params.min = tags[tag];
+    }
+  }
+   return params; 
+  }
+function calculateTagClass(count ,params) {
+  
+}
 
+ 
 function generateTags(){
 
   /* [NEW] create a new variable allTags with an empty object */
@@ -134,12 +154,16 @@ function generateTags(){
  /* [NEW] find list of tags in right column */
  const tagList = document.querySelector(optTagsListSelector);
 /* [NEW] create variable for all links HTML code */
+const tagsParams = calculateTagsParams(allTags);
+console.log('tagsparams' , tagsParams)
 let allTagsHTML = '';
 
 /*[NEW] START LOOP: for each tag in allTags: */
 for (let tag in allTags){
   /*[NEW] generate code of link and add it to allTagHTML*/
-  allTagsHTML += '<li><a href="#tag-' + tag + '"><span>' + tag + +(allTags[tag]) + '</span></a></li> '
+  //  allTagsHTML += '<li><a class="" href="#tag-' + tag + '"><span>' + tag +  '</span></a> (' + allTags[tag] +')</li> '
+   const tagLinkHTML = '<li><a class="' + calculateTagClass(allTags[tag], tagsParams) + '" href="#tag-' + tag + '">' + tag + '</a>(' + allTags[tag] +')</li>';
+   allTagsHTML +=tagLinkHTML;
 }
 /*[NEW] add html from allTagsHTML to taglist*/
 tagList.innerHTML = allTagsHTML;
