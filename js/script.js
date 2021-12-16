@@ -119,7 +119,7 @@ function generateTags(){
       }
       /* END LOOP: for each tag */
      } 
-    }
+    
     /* insert HTML of all the links into the tags wrapper */
     TagsWrapper.innerHTML = html;
     const Tags = document.querySelectorAll('.list list-horizontal');
@@ -130,14 +130,23 @@ function generateTags(){
   
   
   /* END LOOP: for every article: */
- } 
+ }
  /* [NEW] find list of tags in right column */
  const tagList = document.querySelector(optTagsListSelector);
+/* [NEW] create variable for all links HTML code */
+let allTagsHTML ={};
 
- /* [NEW] add html from allTags to tagList */
-  // tagList.innerHTML = allTags.join(' ');
-  console.log(allTags);
-
+/*[NEW] START LOOP: for each tag in allTags: */
+for (let tag in allTags){
+  /*[NEW] generate code of link and add it to allTagHTML*/
+  allTagsHTML += tag + '(' +allTags[tag] +')'
+}
+/*[NEW] add html from allTagsHTML to taglist*/
+tagList.innerHTML = allTagsHTML;
+  
+}
+ 
+ 
 generateTags();
 function tagClickHandler(event){
   /* prevent default action for this event */
