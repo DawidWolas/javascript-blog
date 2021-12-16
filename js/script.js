@@ -139,7 +139,7 @@ let allTagsHTML ={};
 /*[NEW] START LOOP: for each tag in allTags: */
 for (let tag in allTags){
   /*[NEW] generate code of link and add it to allTagHTML*/
-  allTagsHTML += tag + '(' +allTags[tag] +')'
+  allTagsHTML += '<li><a href="#tag-' + tag + '"><span>' + allTags[tag] + '</span></a></li> '
 }
 /*[NEW] add html from allTagsHTML to taglist*/
 tagList.innerHTML = allTagsHTML;
