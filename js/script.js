@@ -141,7 +141,7 @@ function generateTags(){
    /* START LOOP: for each tag */
     for (let tag of articleTagsArray){
       console.log('tag' , tag);
-      const tagHTMLData = {id:TagsWrapper, title:articleTags};
+      const tagHTMLData = {id:TagsWrapper, title:tag};
     const tagLinkHTML = templates.articleTagLink(tagHTMLData); 
       /* add generated code to html variable */
       html= html+ tagLinkHTML;
