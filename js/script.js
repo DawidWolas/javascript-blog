@@ -141,7 +141,7 @@ function generateTags(){
    /* START LOOP: for each tag */
     for (let tag of articleTagsArray){
       console.log('tag' , tag);
-      const tagHTMLData = {id:TagsWrapper, title:tag};
+      const tagHTMLData = {id:tag, title:tag};
     const tagLinkHTML = templates.articleTagLink(tagHTMLData); 
       /* add generated code to html variable */
       html= html+ tagLinkHTML;
@@ -160,8 +160,8 @@ function generateTags(){
     
     /* insert HTML of all the links into the tags wrapper */
     TagsWrapper.innerHTML = html;
-    const Tags = document.querySelectorAll('.list list-horizontal');
-    console.log(Tags);
+    const tags = document.querySelectorAll('.list list-horizontal');
+    console.log(tags);
   
  
 
